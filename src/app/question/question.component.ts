@@ -14,29 +14,11 @@ export class QuestionComponent implements OnInit {
   ) {}
   qns: any[];
   ngOnInit() {
-    if (parseInt(localStorage.getItem('seconds')) > 0) {
-      this.questionService.seconds = parseInt(localStorage.getItem('seconds'));
-      this.questionService.qnProgress = parseInt(
-        localStorage.getItem('qnProgress')
-      );
-      this.questionService.qns = JSON.parse(localStorage.getItem('qns'));
-      if (this.questionService.qnProgress == 8)
-        this.router.navigate(['/question']);
-      else this.startTimer();
-    } else {
-      this.questionService.seconds = 0;
-      this.questionService.qnProgress = 0;
-      this.questionService.getQuestions().subscribe((data: any) => {
-        this.questionService.qns = data;
-        this.startTimer();
-      });
-    }
-  }
-  startTimer() {
-    this.questionService.timer = setInterval(() => {
-      this.questionService.seconds++;
-      localStorage.setItem('seconds', this.questionService.seconds.toString());
-    }, 1000);
+    this.questionService.seconds = 0;
+    this.questionService.qnProgress = 0;
+    this.questionService.getQuestions().subscribe((data: any) => {
+      this.questionService.qns = data;
+    });
   }
 
   Answer(qID, choice) {
@@ -47,9 +29,9 @@ export class QuestionComponent implements OnInit {
       'qnProgress',
       this.questionService.qnProgress.toString()
     );
-    if (this.questionService.qnProgress == 10) {
+    if (this.questionService.qnProgress == 8) {
       clearInterval(this.questionService.timer);
-      this.router.navigate(['/result']);
+      this.router.navigate(['/question']);
     }
   }
 }

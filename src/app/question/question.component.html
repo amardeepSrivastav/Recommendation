@@ -1,18 +1,20 @@
 <div
   class="row"
-  *ngIf="questionService.qns && this.questionService.qnProgress != 10"
+  *ngIf="questionService.qns && this.questionService.qnProgress != 8"
 >
   <div class="col s8 offset-s2">
     <div class="progress">
       <div
         class="determinate"
-        [style.width.%]="(questionService.qnProgress + 1) * 10"
+        [style.width.%]="(questionService.qnProgress + 1) * 8"
       ></div>
     </div>
     <div class="card blue-grey darken-1">
       <div class="card-content white-text">
         <span class="card-title">{{ questionService.qnProgress + 1 }}</span>
-        <p>{{ questionService.qns[questionService.qnProgress].Qn }}</p>
+        <p>
+          {{ questionService.qns[questionService.qnProgress].questionText }}
+        </p>
       </div>
       <div class="card-action">
         <ul class="collection answer">

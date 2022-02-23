@@ -18,6 +18,7 @@ export class QuestionService {
 
   getAnswers() {
     var body = this.qns.map((x) => x.QnID);
+    console.log(body);
     return this.http.post(this.rootUrl + '/api/Answers', body);
   }
 }
