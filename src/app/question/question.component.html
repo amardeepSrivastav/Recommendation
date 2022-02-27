@@ -1,6 +1,9 @@
 <div
   class="row"
-  *ngIf="questionService.qns && this.questionService.qnProgress != 8"
+  *ngIf="
+    questionService.qns &&
+    questionService.qns[questionService.qnProgress] != undefined
+  "
 >
   <div>
     <div class="card">
@@ -23,7 +26,10 @@
               *ngIf="option != null"
               class="collection-item"
               (click)="
-                Answer(questionService.qns[questionService.qnProgress].QnID, i)
+                Answer(
+                  questionService.qns[questionService.qnProgress].questionId,
+                  i
+                )
               "
             >
               {{ option }}

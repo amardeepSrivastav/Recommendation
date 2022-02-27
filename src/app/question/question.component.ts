@@ -16,6 +16,7 @@ export class QuestionComponent implements OnInit {
   ngOnInit() {
     this.questionService.qnProgress = 0;
     this.questionService.getQuestions().subscribe((data: any) => {
+      console.log(data);
       this.questionService.qns = data;
     });
   }
@@ -23,9 +24,12 @@ export class QuestionComponent implements OnInit {
   Answer(qID, choice) {
     this.questionService.qns[this.questionService.qnProgress].answer = choice;
     this.questionService.qnProgress++;
-    if (this.questionService.qnProgress == 8) {
-      clearInterval(this.questionService.timer);
-      this.router.navigate(['/question']);
+
+    if (
+      this.questionService.qns[this.questionService.qnProgress] == undefined
+    ) {
+      this.router.navigate(['']);
+      window.location.reload();
     }
   }
 }
