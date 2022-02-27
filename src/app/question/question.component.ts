@@ -14,7 +14,6 @@ export class QuestionComponent implements OnInit {
   ) {}
   qns: any[];
   ngOnInit() {
-    this.questionService.seconds = 0;
     this.questionService.qnProgress = 0;
     this.questionService.getQuestions().subscribe((data: any) => {
       this.questionService.qns = data;
@@ -23,12 +22,7 @@ export class QuestionComponent implements OnInit {
 
   Answer(qID, choice) {
     this.questionService.qns[this.questionService.qnProgress].answer = choice;
-    localStorage.setItem('qns', JSON.stringify(this.questionService.qns));
     this.questionService.qnProgress++;
-    localStorage.setItem(
-      'qnProgress',
-      this.questionService.qnProgress.toString()
-    );
     if (this.questionService.qnProgress == 8) {
       clearInterval(this.questionService.timer);
       this.router.navigate(['/question']);

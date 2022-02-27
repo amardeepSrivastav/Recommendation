@@ -7,12 +7,11 @@ export class QuestionService {
   readonly rootUrl = 'http://localhost:5000';
   qns: any[];
   seconds: number;
-  timer;
   qnProgress: number;
-  correctAnswerCount: number = 0;
   constructor(private http: HttpClient) {}
 
   getQuestions() {
+    console.log('getting questions');
     return this.http.get(this.rootUrl + '/api/Questions');
   }
 
