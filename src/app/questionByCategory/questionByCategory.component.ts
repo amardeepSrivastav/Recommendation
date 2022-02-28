@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { QuestionService } from '../shared/question.service';
+import { QuestionByCategoryService } from '../shared/questionByCategoryService';
 
 @Component({
   selector: 'app-questionByCategory',
@@ -9,12 +10,19 @@ import { QuestionService } from '../shared/question.service';
 })
 export class QuestionByCategoryComponent implements OnInit {
   @Input() selectedCategory: string;
-  constructor(private router: Router) {}
-  ngOnInit() {}
+  constructor(
+    private router: Router,
+    private questionByCategoryService: QuestionByCategoryService
+  ) {}
+  ngOnInit() {
+    this.questionByCategoryService.qnProgress = 0;
+    this.questionByCategoryService
+      .getQuestionsByCategory()
+      .subscribe((data: any) => {
+        console.log(data);
+        this.questionByCategoryService.subQuestions = data;
+      });
+  }
 
   Answer() {}
-}
-
-function input() {
-  throw new Error('Function not implemented.');
 }

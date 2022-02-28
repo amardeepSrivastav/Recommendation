@@ -9,6 +9,8 @@ import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { QuestionService } from './shared/question.service';
 import { HttpClientModule } from '@angular/common/http';
+import { QuestionByCategoryComponent } from './questionByCategory/questionByCategory.component';
+import { QuestionByCategoryService } from './shared/questionByCategoryService';
 
 @NgModule({
   imports: [
@@ -18,8 +20,13 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule,
   ],
-  declarations: [AppComponent, HelloComponent, QuestionComponent],
+  declarations: [
+    AppComponent,
+    HelloComponent,
+    QuestionComponent,
+    QuestionByCategoryComponent,
+  ],
   bootstrap: [AppComponent],
-  providers: [QuestionService],
+  providers: [QuestionService, QuestionByCategoryService],
 })
 export class AppModule {}

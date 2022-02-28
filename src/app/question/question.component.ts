@@ -23,15 +23,10 @@ export class QuestionComponent implements OnInit {
 
   Answer(optionSelected) {
     console.log(optionSelected);
-    this.questionService.qns[this.questionService.qnProgress].answer =
-      optionSelected;
-    this.questionService.qnProgress++;
 
-    if (
-      this.questionService.qns[this.questionService.qnProgress] == undefined
-    ) {
-      this.router.navigate(['']);
-      window.location.reload();
-    }
+    localStorage.clear();
+    localStorage.setItem('selectedCategory', JSON.stringify(optionSelected));
+    this.router.navigate(['/subQuestion']);
+    //window.location.reload();
   }
 }

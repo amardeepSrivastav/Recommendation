@@ -1,24 +1,33 @@
 <div
   class="row"
   *ngIf="
-    questionService.qns &&
-    questionService.qns[questionService.qnProgress] != undefined
+    questionByCategoryService.subQuestions &&
+    questionByCategoryService.subQuestions[
+      questionByCategoryService.qnProgress
+    ] != undefined
   "
 >
   <div>
     <div class="card">
       <div class="card-content">
-        <span class="card-title">{{ questionService.qnProgress + 1 }}</span>
+        <span class="card-title">{{
+          questionByCategoryService.qnProgress + 1
+        }}</span>
         <p>
-          {{ questionService.qns[questionService.qnProgress].questionText }}
+          {{
+            questionByCategoryService.subQuestions[
+              questionByCategoryService.qnProgress
+            ].questionByCategoryText
+          }}
         </p>
       </div>
       <div class="card-action">
         <ul class="collection answer">
           <ng-container
             *ngFor="
-              let option of questionService.qns[questionService.qnProgress]
-                .options;
+              let option of questionByCategoryService.subQuestions[
+                questionByCategoryService.qnProgress
+              ].options;
               let i = index
             "
           >
