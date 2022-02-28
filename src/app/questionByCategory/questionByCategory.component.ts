@@ -28,8 +28,13 @@ export class QuestionByCategoryComponent implements OnInit {
     console.log(optionSelected);
 
     this.questionByCategoryService.qnProgress++;
-    
-    this.router.navigate(['/subQuestion']);
+    if (
+      this.questionByCategoryService.subQuestions[
+        this.questionByCategoryService.qnProgress
+      ] == undefined
+    ) {
+      this.router.navigate(['/question']);
+    }
     //window.location.reload();
   }
 }

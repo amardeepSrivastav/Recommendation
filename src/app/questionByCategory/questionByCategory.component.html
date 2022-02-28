@@ -23,8 +23,10 @@
       </div>
       <div class="card-action">
         <ul class="collection answer">
-          <li>Yes</li>
-          <li>No</li>
+          <ng-container>
+            <li class="collection-item" (click)="Answer(1)">Yes</li>
+            <li class="collection-item" (click)="Answer(2)">No</li>
+          </ng-container>
         </ul>
       </div>
     </div>
