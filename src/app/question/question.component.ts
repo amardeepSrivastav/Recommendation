@@ -21,8 +21,10 @@ export class QuestionComponent implements OnInit {
     });
   }
 
-  Answer(qID, choice) {
-    this.questionService.qns[this.questionService.qnProgress].answer = choice;
+  Answer(optionSelected) {
+    console.log(optionSelected);
+    this.questionService.qns[this.questionService.qnProgress].answer =
+      optionSelected;
     this.questionService.qnProgress++;
 
     if (

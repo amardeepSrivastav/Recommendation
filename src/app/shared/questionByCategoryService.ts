@@ -5,18 +5,14 @@ import { HttpClient } from '@angular/common/http';
 export class QuestionService {
   //---------------- Properties---------------
   readonly rootUrl = 'http://localhost:5000';
-  qns: any[];
+  subQuestions: any[];
   qnProgress: number;
   constructor(private http: HttpClient) {}
 
-  getQuestions() {
-    console.log('getting questions');
-    return this.http.get(this.rootUrl + '/api/Questions');
-  }
-
-  getAnswers() {
-    var body = this.qns.map((x) => x.QnID);
-    console.log(body);
-    return this.http.post(this.rootUrl + '/api/Answers', body);
+  getQuestionsByCategory(selectedCategory: string) {
+    console.log('getting sub questions');
+    return this.http.get(
+      this.rootUrl + '/api/subQuestions/{{selectedCategory}}'
+    );
   }
 }
