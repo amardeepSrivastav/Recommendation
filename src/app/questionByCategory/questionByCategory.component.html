@@ -17,28 +17,14 @@
           {{
             questionByCategoryService.subQuestions[
               questionByCategoryService.qnProgress
-            ].questionByCategoryText
+            ].subOptionText
           }}
         </p>
       </div>
       <div class="card-action">
         <ul class="collection answer">
-          <ng-container
-            *ngFor="
-              let option of questionByCategoryService.subQuestions[
-                questionByCategoryService.qnProgress
-              ].options;
-              let i = index
-            "
-          >
-            <li
-              *ngIf="option != null"
-              class="collection-item"
-              (click)="Answer(option.optionId)"
-            >
-              {{ option.optionName }}
-            </li>
-          </ng-container>
+          <li>Yes</li>
+          <li>No</li>
         </ul>
       </div>
     </div>

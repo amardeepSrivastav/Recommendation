@@ -24,5 +24,12 @@ export class QuestionByCategoryComponent implements OnInit {
       });
   }
 
-  Answer() {}
+  Answer(optionSelected) {
+    console.log(optionSelected);
+
+    this.questionByCategoryService.qnProgress++;
+    
+    this.router.navigate(['/subQuestion']);
+    //window.location.reload();
+  }
 }
